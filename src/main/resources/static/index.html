@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var xhr = new XMLHttpRequest();
+    var open_str = "http://127.0.0.1:8080/employee";
+    xhr.open("GET", open_str, true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var employees = JSON.parse(xhr.responseText);
+            var out =  '';
+            for (var i in employees) {
+                out += 'Имя:' + employees[i].name + '<br>';
+            }
+            document.getElementById('out').innerHTML = out;
+        }
+    }
+    xhr.send();
+</script>
+<p>Index</p>
+<p id='out'></p>
+
+</body>
+</html>
